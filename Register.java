@@ -30,10 +30,9 @@ public class Register extends HashMap implements ActionListener {
 
     public Register() throws IOException {
 
-        image = new ImageIcon(getClass().getResource("hacker.png"));
+        image = new ImageIcon(getClass().getResource("anonymous.jpg"));
         backGround = new JLabel(image);
         frame.add(backGround);
-        
         frame.setSize(450, 450);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +58,7 @@ public class Register extends HashMap implements ActionListener {
         passwordField.addActionListener(this);
 
         //colors:
-        userLabel.setForeground(Color.green);
+        userLabel.setForeground(Color.yellow);
         passwordTitle.setForeground(Color.orange);
         registerButton.setBackground(Color.ORANGE);
         Login.setBackground(Color.ORANGE);
