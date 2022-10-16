@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Login_Page implements ActionListener {
@@ -90,7 +91,11 @@ public class Login_Page implements ActionListener {
             }
         }
         if (e.getSource() == registerButton) {
-            Register register = new Register();
+            try {
+                Register register = new Register();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             frame.dispose();
         }
         if (e.getSource() == resetButton) {
