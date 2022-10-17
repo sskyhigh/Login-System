@@ -1,14 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Register extends HashMap implements ActionListener {
     private final JFrame frame = new JFrame("Deep Web Registration");
@@ -28,8 +23,8 @@ public class Register extends HashMap implements ActionListener {
     private ImageIcon image;
     private JLabel backGround;
 
-    public Register() throws IOException {
-
+    public Register(HashMap<String, String> info) throws IOException {
+        info = information;
         image = new ImageIcon(getClass().getResource("anonymous.jpg"));
         backGround = new JLabel(image);
         frame.add(backGround);
@@ -94,10 +89,10 @@ public class Register extends HashMap implements ActionListener {
         } else {
             if (e.getSource() == registerButton) {
                 try {
-                    ID_Pass pass = new ID_Pass();
                     userData = userField.getText();
                     userPass = String.valueOf(passwordField.getPassword());
-                    information.put(userData, userPass);
+                    StoringData storingData = new StoringData(userData, userPass);
+                    JOptionPane.showMessageDialog(null, "Registration success.");
                 } catch (Exception exception) {
                     JOptionPane.showMessageDialog(null, exception);
                 }
@@ -105,14 +100,15 @@ public class Register extends HashMap implements ActionListener {
         }
 
         if (e.getSource() == Login) {
-            ID_Pass idPass = null;
+            ID_Pass idPass;
             try {
                 idPass = new ID_Pass();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            Login_Page loginPage = new Login_Page(idPass.getCredentials());
             frame.dispose();
+            Login_Page loginPage = new Login_Page(idPass.getCredentials());
+
         }
         if (e.getSource() == reset) {
             userField.setText("");

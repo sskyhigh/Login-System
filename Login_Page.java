@@ -17,9 +17,12 @@ public class Login_Page implements ActionListener {
     JButton registerButton = new JButton("Register");
     JButton helpButton = new JButton("Help");
     HashMap<String, String> Credentials;
+    HashMap<String, String> otherInfo;
+    HashMap<String, String> _Credentials;
 
     public Login_Page(HashMap<String, String> OriginalInfo) {
         Credentials = OriginalInfo;
+        _Credentials = OriginalInfo;
         _userID.setBounds(50, 100, 75, 25);
         password.setBounds(50, 150, 75, 25);
 
@@ -66,7 +69,7 @@ public class Login_Page implements ActionListener {
         if (e.getSource() == loginButton || e.getSource() == passwordField) {
             String userID = userName.getText();
             String pass = String.valueOf(passwordField.getPassword());
-            if (Credentials.containsKey(userID)) {
+            if (Credentials.containsKey(userID) || _Credentials.containsKey(userID)) {
                 if (Credentials.get(userID).equals(pass)) {
                     message.setForeground(Color.green);
                     message.setText("Login Successful");
@@ -92,7 +95,7 @@ public class Login_Page implements ActionListener {
         }
         if (e.getSource() == registerButton) {
             try {
-                Register register = new Register();
+                Register register = new Register(otherInfo);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
