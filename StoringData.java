@@ -1,18 +1,24 @@
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class StoringData {
     HashMap<String, String> _Credentials = new HashMap<String, String>();
     String username;
     String password;
+    final static String outputFilePath = "C:\\Users\\Shao\\Documents\\GitHub\\Login-System";
 
     public StoringData(String name, String psw) throws IOException {
         this.username = name;
         this.password = psw;
         _Credentials.put(name, psw);
         savingFile(_Credentials);
+        reading(_Credentials);
+    }
+
+    public StoringData() throws IOException {
+        savingFile(_Credentials);
+        reading(_Credentials);
         reading(_Credentials);
     }
 
@@ -44,6 +50,37 @@ public class StoringData {
             }
         } catch (Exception e) {
             System.out.println("Error at : " + e);
+        }
+    }
+
+    public void check(HashMap<String, String> hashMap) throws IOException {
+        File file = new File(outputFilePath);
+        BufferedWriter bf = null;
+        try {
+            //create new BufferedWriter for the output file
+            bf = new BufferedWriter(new FileWriter("output.txt"));
+
+            //iterate map entries
+            for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+
+                //put key and value separated by a colon
+                bf.write(entry.getKey() + ":" + entry.getValue());
+
+                //new line
+                bf.newLine();
+            }
+
+            bf.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                //always close the writer
+                assert bf != null;
+                bf.close();
+            } catch (Exception e) {
+            }
         }
     }
 

@@ -108,7 +108,6 @@ public class Register extends HashMap implements ActionListener {
             }
             frame.dispose();
             Login_Page loginPage = new Login_Page(idPass.getCredentials());
-
         }
         if (e.getSource() == reset) {
             userField.setText("");
