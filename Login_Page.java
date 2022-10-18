@@ -47,7 +47,7 @@ public class Login_Page implements ActionListener {
         helpButton.setBounds(225, 250, 100, 25);
         helpButton.setFocusable(false);
         helpButton.addActionListener(this);
-
+        frame.setTitle("Deep Web Login");
         frame.add(helpButton);
         frame.add(userName);
         frame.add(passwordField);

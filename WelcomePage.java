@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class WelcomePage {
     JFrame frame = new JFrame();
-    JLabel welcomeMessage = new JLabel("Hello");
+    JLabel welcomeMessage = new JLabel();
 
     WelcomePage(String userName) {
         welcomeMessage.setBounds(0, 0, 200, 30);
